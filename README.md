@@ -36,7 +36,7 @@ A example of output:
 python predictor.py --device 0 --task bp --pdb data/1P4U-A.pdb --only_pdbch False --prob 0.5
 ```
 ### output
-```bash
+```txt
 The protein may hold the following functions of BP:
 Possibility: 0.9 ||| Functions: GO:0071702, organic substance transport
 Possibility: 0.95 ||| Functions: GO:0046907, intracellular transport
