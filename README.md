@@ -16,11 +16,19 @@ pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f htt
 pip install -r requirements.txt
 ## step3: install pyg package
 pip install torch_scatter torch_sparse torch_cluster torch_spline_conv torch_geometric -f https://data.pyg.org/whl/torch-1.7.1%2Bcu110.html ### GPU
-### step3: or install by the following source codes
+## step3: or install by the following source codes
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_cluster-1.5.8-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_scatter-2.0.5-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_sparse-0.6.9-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_spline_conv-1.2.1-cp37-cp37m-linux_x86_64.whl
 pip install torch_geometric==1.6.3
 ```
+## Protein Function Prediction
+To predict protein functions use `predict.py` script with the following options:
+
+* `device`             str, 
+* `task`            str,  default='bp', choose from three gene ontology tasks ['mf','bp','cc']
+* `pdb`             str, path of the input query pdb file
+* `only_pdbch`   str2bool, default=False, True means use the model parameters trained only on PDBch training set, False means use the model parameters trained on PDBch and AFch combined training set
+* `prob`  float, default=0.5, choose a threshold, and then output the protein function with predicted probability above the threshold
 
