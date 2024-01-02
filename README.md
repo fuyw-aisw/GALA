@@ -17,6 +17,6 @@ pip install torch_scatter torch_sparse torch_cluster torch_spline_conv torch_geo
 ## step3: download other dependencies
 pip install -r requirements.txt
 ## step4: install the relative packages to run ESM-1b protein language model.
-pip install fair-esm ##https://github.com/facebookresearch/esm#getting-started-with-this-repo-
+pip install fair-esm ##https://github.com/facebookresearch/esm
 ```
 
