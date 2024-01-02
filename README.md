@@ -59,7 +59,6 @@ Possibility: 0.92 ||| Functions: GO:0042886, amide transport
 ## Model Training
 ### Data preparation
 Our dataset can be downloaded from [here](https://disk.pku.edu.cn:443/link/E5DFEA3B9F95E679F76DEC9061872BB2).
-Unzip zip and then obtain 
 ```bash
 unzip prot30.zip -d ../GALA/data/
 ```
@@ -70,7 +69,7 @@ Files with suffix of `pdbch` record the PDBid or uniprot accession of each prote
 AF2train_graph.pt  AF2val_graph.pt  AF2test_graph.pt  train_graph.pt  val_graph.pt  test_graph.pt
 AF2train_pdbch.pt  AF2val_pdbch.pt  AF2test_pdbch.pt  train_pdbch.pt  val_pdbch.pt  test_pdbch.pt
 ```
-As for *.graph.pt:
+#### As for *.graph.pt:
 *`edge_index`, edge index of residue pairs whose $C_\alpha$ are within 10 angstroms
 *`native_x`, residues of each protein 
 *`x`, ESM-1b embedding for each residue
