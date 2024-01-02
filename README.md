@@ -31,7 +31,7 @@ To predict protein functions use `predict.py` script with the following options:
 * `pdb`             str, path of the input query pdb file
 * `only_pdbch`   str2bool, default=False, True means use the model parameters trained only on PDBch training set, False means use the model parameters trained on PDBch and AFch combined training set
 * `prob`  float, default=0.5, choose a threshold, and then output the protein function with predicted probability above the threshold
-A example of output:
+### Predicting functions of protein 1P4U-A on BP-GO term:
 ```bash
 python predictor.py --device 0 --task bp --pdb data/1P4U-A.pdb --only_pdbch False --prob 0.5
 ```
