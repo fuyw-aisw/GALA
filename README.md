@@ -69,10 +69,10 @@ Files with suffix of `pdbch` record the PDBid or uniprot accession of each prote
 AF2train_graph.pt  AF2val_graph.pt  AF2test_graph.pt  train_graph.pt  val_graph.pt  test_graph.pt
 AF2train_pdbch.pt  AF2val_pdbch.pt  AF2test_pdbch.pt  train_pdbch.pt  val_pdbch.pt  test_pdbch.pt
 ```
-#### As for *.graph.pt:
-*`edge_index`, edge index of residue pairs whose $C_\alpha$ are within 10 angstroms
-*`native_x`, residues of each protein 
-*`x`, ESM-1b embedding for each residue
+As for *.graph.pt:
+* `edge_index`  edge index of residue pairs whose $C_\alpha$ are within 10 angstroms
+* `native_x`  residues of each protein 
+* `x`  ESM-1b embedding for each residue
 ### To retrain the model:
 ```bash
 python train.py --task mf --suffix sort_by_id_mf__AF2 --device 0 --esmembed True --AF2model True --batch_size 64 --method CDAN-E --alpha 0.05 --gamma 1
