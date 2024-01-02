@@ -25,8 +25,7 @@ pip install torch_geometric==1.6.3
 ```
 ## Protein Function Prediction
 To predict protein functions use `predict.py` script with the following options:
-
-* `device`             str, 
+* `device`             str, choose the available cuda
 * `task`            str,  default='bp', choose from three gene ontology tasks ['mf','bp','cc']
 * `pdb`             str, path of the input query pdb file
 * `only_pdbch`   str2bool, default=False, True means use the model parameters trained only on PDBch training set, False means use the model parameters trained on PDBch and AFch combined training set
@@ -57,4 +56,39 @@ Possibility: 0.9 ||| Functions: GO:0033036, macromolecule localization
 Possibility: 0.92 ||| Functions: GO:0015833, peptide transport
 Possibility: 0.92 ||| Functions: GO:0042886, amide transport
 ```
-
+## Model Training
+### Data preparation
+Our dataset can be downloaded from [here](https://disk.pku.edu.cn:443/link/E5DFEA3B9F95E679F76DEC9061872BB2).
+Unzip zip and then obtain 
+```bash
+unzip prot30.zip -d ../GALA/data/
+```
+The dataset related files will be under `../GALA/data/prot30`. 
+Files with prefix of `AF2` belong to AFch dataset, others belong to PDBch dataset.
+Files with suffix of `pdbch` record the PDBid or uniprot accession of each protein, and files with suffix of `graph` contain the graph we constructed for each protein.  
+```txt
+AF2test_graph.pt  AF2train_graph.pt  AF2val_graph.pt  test_graph.pt  train_graph.pt  val_graph.pt
+AF2test_pdbch.pt  AF2train_pdbch.pt  AF2val_pdbch.pt  test_pdbch.pt  train_pdbch.pt  val_pdbch.pt
+```
+### To retrain the model:
+```bash
+python train.py --task mf --suffix sort_by_id_mf__AF2 --device 0 --esmembed True --AF2model True --batch_size 64 --method CDAN-E --alpha 0.05 --gamma 1
+```
+* `device`      str, choose the available cuda
+* `task`            str,  default='bp', choose from three gene ontology tasks ['mf','bp','cc']
+* `suffix`             str, the suffix of the file name for the trained model
+* `esmembed`   bool, whether to use ESM-1b language model
+* `pooling`   str, pooling layer for graph transformer
+* `AF2model` str, whether to use AF2model for training
+* `batch_size`  int, sample size for a batch
+* `method` str, method for domain alignment
+* `random` str, whether to randomized multilinear map of feature embedding and predicted probability
+* `alpha` str, weight of loss
+* `gamma` str, weight of loss
+## Model Testing
+### To test the model on the test set:
+```bash
+python test.py --task mf --device 0 --esmembed True --model sortedmodel/model_mfsort_by_id_mf_AF2.pt
+```
+* `model`      str, the path of the trained model
+* `AF2test`    bool, whether to use AFch set for testing
