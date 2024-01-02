@@ -31,4 +31,30 @@ To predict protein functions use `predict.py` script with the following options:
 * `pdb`             str, path of the input query pdb file
 * `only_pdbch`   str2bool, default=False, True means use the model parameters trained only on PDBch training set, False means use the model parameters trained on PDBch and AFch combined training set
 * `prob`  float, default=0.5, choose a threshold, and then output the protein function with predicted probability above the threshold
+A example of output:
+```bash
+python predictor.py --device 0 --task bp --pdb data/1P4U-A.pdb --only_pdbch False --prob 0.5
+```
+### output
+```bash
+The protein may hold the following functions of BP:
+Possibility: 0.9 ||| Functions: GO:0071702, organic substance transport
+Possibility: 0.95 ||| Functions: GO:0046907, intracellular transport
+Possibility: 0.83 ||| Functions: GO:0016192, vesicle-mediated transport
+Possibility: 0.92 ||| Functions: GO:0071705, nitrogen compound transport
+Possibility: 0.99 ||| Functions: GO:0051179, localization
+Possibility: 0.92 ||| Functions: GO:0015031, protein transport
+Possibility: 0.88 ||| Functions: GO:0006886, intracellular protein transport
+Possibility: 0.8 ||| Functions: GO:0070727, cellular macromolecule localization
+Possibility: 0.99 ||| Functions: GO:0051234, establishment of localization
+Possibility: 0.92 ||| Functions: GO:0045184, establishment of protein localization
+Possibility: 0.93 ||| Functions: GO:0051641, cellular localization
+Possibility: 0.99 ||| Functions: GO:0006810, transport
+Possibility: 0.94 ||| Functions: GO:0051649, establishment of localization in cell
+Possibility: 0.9 ||| Functions: GO:0008104, protein localization
+Possibility: 0.81 ||| Functions: GO:0034613, cellular protein localization
+Possibility: 0.9 ||| Functions: GO:0033036, macromolecule localization
+Possibility: 0.92 ||| Functions: GO:0015833, peptide transport
+Possibility: 0.92 ||| Functions: GO:0042886, amide transport
+```
 
