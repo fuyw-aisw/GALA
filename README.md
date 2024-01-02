@@ -14,9 +14,9 @@ conda activate gala
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 ## step2: install pyg package
 pip install torch_scatter torch_sparse torch_cluster torch_spline_conv torch_geometric -f https://data.pyg.org/whl/torch-1.7.1%2Bcu110.html #### GPU
-## step3: download other dependencies
-pip install -r requirements.txt
-## step4: install the relative packages to run ESM-1b protein language model.
+## step3: install the relative packages to run ESM-1b protein language model
 pip install fair-esm ##https://github.com/facebookresearch/esm
+## step4: download other dependencies
+pip install -r requirements.txt
 ```
 
