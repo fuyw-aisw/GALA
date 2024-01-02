@@ -13,9 +13,10 @@ import esm
 
 p = argparse.ArgumentParser()
 p.add_argument('--device', type=str, default='', help='')
-p.add_argument('--task', type=str, default='bp', choices=['bp','mf','cc'], help='gene ontoly task')
+p.add_argument('--task', type=str, default='bp', choices=['bp','mf','cc'], help='gene ontology task')
 p.add_argument('--pdb', type=str, default='', help='Input the query pdb file')
-#p.add_argument('--esm1b_model', type=str, default='', help='The path of esm-1b model parameter.')
+p.add_argument('--only_pdbch', default=False, type=str2bool, help='To use model parameters trained only on PDBch training set')
+p.add_argument('--prob', default=0.5, type=float, help='Output the function with predicted probility > 0.5 .')
 args = p.parse_args()
 
 _, goterms, gonames, _ = load_GO_annot("data/nrPDB-GO_2019.06.18_annot.tsv")
@@ -107,12 +108,17 @@ elif args.task == 'cc':
 
 model = CL_protNET(output_dim).to(device)
 
-model.load_state_dict(torch.load(f'sortedmodel/model_{args.task}sort_by_id_{args.task}_AF2.pt',map_location=device))
+if args.only_pdbch:
+    model.load_state_dict(torch.load(f'sortedmodel/model_{args.task}sort_by_id_{args.task}',map_location=device))
+else:
+    model.load_state_dict(torch.load(f'sortedmodel/model_{args.task}sort_by_id_{args.task}_AF2.pt',map_location=device))
 
 model.eval()
+y_non = torch.zeros(1,output_dim).to(device)
 with torch.no_grad():
-    y_pred = model(batch.to(device)).cpu().numpy()
-func_index = np.where(y_pred > 0.5)[1]
+    y_pred,_,_ = model(batch.to(device),y_non)
+y_pred = y_pred.cpu().numpy()
+func_index = np.where(y_pred > args.prob)[1]
 if func_index.shape[0] == 0:
     print(f'Sorry, no functions of {args.task.upper()} can be predicted...')
 else:
