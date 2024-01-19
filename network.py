@@ -34,8 +34,8 @@ class GraphCNN(nn.Module):
             self.pool = gmp
         # Define dropout
         self.drop1 = nn.Dropout(p=0.2) #0.2
-    def activations_hook(self,grad): #
-        self.final_conv_grads = grad #
+    #def activations_hook(self,grad): #
+        #self.final_conv_grads = grad #
     
 
     def forward(self, x, data, pertubed=False):
@@ -45,11 +45,11 @@ class GraphCNN(nn.Module):
         for idx, gcn_layer in enumerate(self.gcn):
             if idx == 0:
                 x = F.relu(gcn_layer(x, data.edge_index.long()))
-            elif idx == 2: #
-                with torch.enable_grad(): #
-                    self.final_conv_acts = gcn_layer(x, data.edge_index.long()) #
-                self.final_conv_acts.register_hook(self.activations_hook) #
-                x = x + F.relu(self.final_conv_acts) #
+            #elif idx == 2: #
+               # with torch.enable_grad(): #
+               #     self.final_conv_acts = gcn_layer(x, data.edge_index.long()) #
+               # self.final_conv_acts.register_hook(self.activations_hook) #
+               # x = x + F.relu(self.final_conv_acts) #
             else:
                 x = x + F.relu(gcn_layer(x, data.edge_index.long()))
             
