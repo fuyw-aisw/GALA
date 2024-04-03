@@ -22,6 +22,7 @@ pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_scatter-2.0.5-cp3
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_sparse-0.6.9-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_spline_conv-1.2.1-cp37-cp37m-linux_x86_64.whl
 pip install torch_geometric==1.6.3
+pip install fair-esm
 ```
 ## Protein Function Prediction
 To predict protein functions use `predict.py` script with the following options:
@@ -58,7 +59,7 @@ Possibility: 0.92 ||| Functions: GO:0042886, amide transport
 ```
 ## Model Training
 ### Data preparation
-Our dataset can be downloaded from [here](https://disk.pku.edu.cn:443/link/E5DFEA3B9F95E679F76DEC9061872BB2).
+Our dataset can be downloaded from [here](https://disk.pku.edu.cn/link/AA17F38BCF122E4EDC9463D274E12C6100).
 ```bash
 unzip prot30.zip -d ../GALA/data/
 ```
