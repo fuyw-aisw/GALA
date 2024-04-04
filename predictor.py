@@ -11,6 +11,14 @@ from network import CL_protNET
 from utils import load_GO_annot
 import esm
 
+def str2bool(v):
+    if isinstance(v,bool):
+        return v
+    if v == 'True' or v == 'true':
+        return True
+    if v == 'False' or v == 'false':
+        return False
+        
 p = argparse.ArgumentParser()
 p.add_argument('--device', type=str, default='', help='')
 p.add_argument('--task', type=str, default='bp', choices=['bp','mf','cc'], help='gene ontology task')
