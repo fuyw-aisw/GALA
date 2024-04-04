@@ -8,8 +8,7 @@ Start by following this source codes:
 ```bash
 git clone https://github.com/fuyw-aisw/GALA.git
 cd GALA
-conda create -n gala python=3.7
-conda activate gala
+conda env create -f environment.yml
 ## step1: install PyTorch’s CUDA support on Linux
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 ## step2: download dependencies
