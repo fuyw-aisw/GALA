@@ -94,7 +94,7 @@ class CL_protNET(torch.nn.Module):
                         nn.Sigmoid()
         )
      
-    def forward(self, data, y):
+    def forward(self, data, y=None):
 
         x_aa = self.one_hot_embed(data.native_x.long())
         x_aa = self.proj_aa(x_aa)
@@ -107,10 +107,16 @@ class CL_protNET(torch.nn.Module):
         else:
             x = F.relu(x_aa)
 
-        gcn_n_feat1, gcn_g_feat1 = self.gcn(x, data)
-        g_feat_label = self.label_em(y)
-        y_pred = self.readout(gcn_g_feat1)
-        return y_pred, gcn_g_feat1, g_feat_label
+        gcn_n_feat, gcn_g_feat = self.gcn(x, data)
+        y_pred = self.readout(gcn_g_feat)
+        if y is not None:
+            g_feat_label = self.label_em(y)
+            return y_pred, gcn_g_feat, g_feat_label
+        else:
+            return y_pred, gcn_g_feat
+            
+        
+       
         #if self.pertub:
         #   gcn_n_feat2, gcn_g_feat2 = self.gcn(x, data, pertubed=True) 
             
