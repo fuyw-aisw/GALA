@@ -23,7 +23,7 @@ def test(config, task, model_pt, test_type='test'):
     bce_loss = torch.nn.BCELoss()
     
     output_dim = test_set.y_true.shape[-1]
-    y_non = torch.zeros(config.batch_size,output_dim).to(config.device)
+    #y_non = torch.zeros(config.batch_size,output_dim).to(config.device)
     
     y_pred_all = []
 
@@ -33,7 +33,7 @@ def test(config, task, model_pt, test_type='test'):
         for idx_batch, batch in enumerate(test_loader):
             #model.eval()
             #y_pred, _, _ = model(batch[0].to(config.device))
-            y_pred,_,_= model(batch[0].to(config.device),y_non)
+            y_pred,_ = model(batch[0].to(config.device))
             y_pred_all.append(y_pred)
         y_pred_all = torch.cat(y_pred_all, dim=0).cpu()
 
