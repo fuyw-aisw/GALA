@@ -66,7 +66,7 @@ def train(config, task, suffix):
     
     #target_label = test_set.y_true.float().to(config.device)
     #target_bank = torch.randn(len(test_set),512).to(config.device)
-    y_non = torch.zeros(config.batch_size,output_dim).to(config.device)
+    #y_non = torch.zeros(config.batch_size,output_dim).to(config.device)
     alpha = config.alpha
     gamma = config.gamma
     eta = 1
@@ -95,7 +95,7 @@ def train(config, task, suffix):
             optimizer.zero_grad()
             optimizer_ad.zero_grad()
             y_pred_source, g_feat_source, g_label_source = model(x_source,y_source)
-            y_pred_target, g_feat_target, _ = model(x_target,y_non) #target
+            y_pred_target, g_feat_target = model(x_target) #target
             features = torch.cat((g_feat_source, g_feat_target), dim=0)
             outputs = torch.cat((y_pred_source, y_pred_target), dim=0)
             softmax_out = nn.Softmax(dim=1)(outputs)
@@ -137,7 +137,7 @@ def train(config, task, suffix):
         
         with torch.no_grad():
             for idx_batch, batch in enumerate(val_loader):
-                y_pred,_,_= model(batch[0].to(config.device),y_non)
+                y_pred,_= model(batch[0].to(config.device))
                 y_pred_all.append(y_pred)
             y_pred_all = torch.cat(y_pred_all, dim=0).cpu().reshape(-1)
             eval_loss = bce_loss(y_pred_all, y_true_all).mean()
