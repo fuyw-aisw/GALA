@@ -29,7 +29,7 @@ pip install fair-esm
 docker pull fuyw99/gala
 ```
 
-Run gala in container
+Run GALA in container
 
 > GPU and Nvidia-container required
 
