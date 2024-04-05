@@ -23,6 +23,19 @@ pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_spline_conv-1.2.1
 pip install torch_geometric==1.6.3
 pip install fair-esm
 ```
+## Docker package download(Optional)
+
+```bash
+docker pull fuyw99/gala
+```
+
+Run gala in container
+
+> GPU and Nvidia-container required
+
+```bash
+docker run -v /path/to/your/data:/apps/data/ -it fuyw99/gala
+```
 ## Protein Function Prediction
 To predict protein functions use `predict.py` script with the following options:
 * `device`             str, choose the available cuda
