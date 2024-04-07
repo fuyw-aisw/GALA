@@ -9,13 +9,12 @@ Start by following this source codes:
 git clone https://github.com/fuyw-aisw/GALA.git
 cd GALA
 conda env create -f environment.yml
+## or install the following dependencies
 ## step1: install PyTorch’s CUDA support on Linux
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
-## step2: download dependencies
-pip install -r requirements.txt
-## step3: install pyg package
+## step2: install pyg package
 pip install torch_scatter torch_sparse torch_cluster torch_spline_conv torch_geometric -f https://data.pyg.org/whl/torch-1.7.1%2Bcu110.html ### GPU
-## step3: or install by the following source codes
+## step2: or install by the following source codes
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_cluster-1.5.8-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_scatter-2.0.5-cp37-cp37m-linux_x86_64.whl
 pip install https://data.pyg.org/whl/torch-1.7.0%2Bcu110/torch_sparse-0.6.9-cp37-cp37m-linux_x86_64.whl
