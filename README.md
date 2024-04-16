@@ -87,7 +87,7 @@ As for *.graph.pt:
 * `x`  ESM-1b embedding for each residue
 ### To retrain the model:
 ```bash
-python train.py --task mf --suffix sort_by_id_mf__AF2 --device 0 --esmembed True --AF2model True --batch_size 64 --method CDAN-E --alpha 0.05 --gamma 1
+python train.py --task mf --suffix sort_by_id_mf_AF2 --device 0 --esmembed True --AF2model True --batch_size 64 --method CDAN-E --alpha 0.05 --gamma 1
 ```
 * `device`      str, choose the available cuda
 * `task`            str,  default='bp', choose from three gene ontology tasks ['mf','bp','cc']
