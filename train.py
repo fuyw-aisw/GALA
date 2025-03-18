@@ -151,12 +151,13 @@ def train(config, task, suffix):
             if eval_loss < best_eval_loss:
                 best_eval_loss = eval_loss
                 es = 0
+                torch.save(model.state_dict(), config.model_save_path + task + f"{suffix}.pt")
             else:
                 es += 1
                 print("Counter {} of 5".format(es))
 
             if es > 4 :
-                torch.save(model.state_dict(), config.model_save_path + task + f"{suffix}.pt")
+                
                 torch.save(
                     {
                         "train_bce": train_loss,
